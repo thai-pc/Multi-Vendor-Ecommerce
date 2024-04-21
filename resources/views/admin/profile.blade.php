@@ -4,14 +4,14 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Thông tin tài khoản</div>
+            <div class="breadcrumb-title pe-3">Thông tin tài khoản quản trị</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i
                                     class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Thông tin tài khoản</li>
+                        <li class="breadcrumb-item active" aria-current="page">Thông tin tài khoản quản trị</li>
                     </ol>
                 </nav>
             </div>
@@ -42,7 +42,7 @@
                                     <img
                                         src="{{!empty($adminData->photo) ? url('uploads/admin/images/'.$adminData->photo) : url('uploads/images/no_image.jpg')}}"
                                         alt="{{Auth::user()->name}}"
-                                        class="rounded-circle p-1 bg-primary" width="110">
+                                        class="rounded-circle p-1" width="110">
                                     <div class="mt-3">
                                         <h4>{{ Auth::user()->name }}</h4>
                                         <p class="text-secondary mb-1">{{ Auth::user()->email }}</p>
@@ -144,7 +144,7 @@
                                             <img id="showImage"
                                                  src="{{!empty($adminData->photo) ? url('uploads/admin/images/'.$adminData->photo) : url('uploads/images/no_image.jpg')}}"
                                                  alt="{{Auth::user()->name}}"
-                                                 class="rounded-circle p-1 bg-primary" width="100">
+                                                 class="rounded-circle p-1" width="100">
                                         </div>
                                     </div>
                                     <div class="row">

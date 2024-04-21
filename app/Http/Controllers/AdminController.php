@@ -45,7 +45,7 @@ class AdminController extends Controller
         }
         $data->save();
         $notification = array(
-            'message' => 'Cập nhật thông tin tài khoản thành công',
+            'message' => 'Cập nhật thông tin tài khoản quản trị thành công',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
@@ -59,9 +59,9 @@ class AdminController extends Controller
     public function updatePassword(Request $request)
     {
         $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed',
-            'new_password_confirmation' => 'required'
+            'old_password' => 'required|min:8',
+            'new_password' => 'required|min:8|confirmed',
+            'new_password_confirmation' => 'required|min:8'
         ]);
 
         if (!Hash::check($request->old_password, Auth::user()->password)) {
@@ -81,6 +81,6 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('admin/login');
     }
 }

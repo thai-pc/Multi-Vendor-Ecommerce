@@ -15,7 +15,7 @@
             <a href="{{route('admin.dashboard')}}">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
                 </div>
-                <div class="menu-title">Dashboard</div>
+                <div class="menu-title">Bảng điều khiển</div>
             </a>
         </li>
         <li>
