@@ -44,10 +44,13 @@
                                            aria-selected="true"><i class="fi-rs-user mr-10"></i>Thông tin tài khoản</a>
                                     </li>
                                     <li class="nav-item">
-                                        <form method="POST" action="{{route('logout')}}">
-                                            <a type="submit" class="nav-link"><i
-                                                    class="fi-rs-sign-out mr-10"></i>Đăng xuất</a>
-                                        </form>
+                                        <a class="nav-link" id="change-password-tab" data-bs-toggle="tab"
+                                           href="#change-password" role="tab" aria-controls="change-password"
+                                           aria-selected="true"><i class="fi-rs-user mr-10"></i>Đổi mật khẩu</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('user.logout')}}" class="nav-link"><i
+                                                class="fi-rs-sign-out mr-10"></i>Đăng xuất</a>
                                     </li>
                                 </ul>
                             </div>
@@ -59,6 +62,10 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h3 class="mb-0">Xin chào {{Auth::user()->name}}!</h3>
+                                            <img
+                                                src="{{!empty($userData->photo) ? url('uploads/user/images/'.$userData->photo) : url('uploads/images/no_image.jpg')}}"
+                                                alt="{{Auth::user()->name}}"
+                                                class="rounded-circle p-1" width="100">
                                         </div>
                                         <div class="card-body">
                                             <p>
@@ -237,6 +244,68 @@
                                                         <button type="submit"
                                                                 class="btn btn-fill-out submit font-weight-bold"
                                                                 name="submit" value="Submit">Cập nhật
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="change-password" role="tabpanel"
+                                     aria-labelledby="account-detail-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Đổi mật khẩu</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="POST" action="{{route('user.update.password')}}"
+                                                  enctype="multipart/form-data">
+                                                @csrf
+                                                @if(session('status'))
+                                                    <div class="alert alert-success" role="alert">
+                                                        {{session('status')}}
+                                                    </div>
+                                                @elseif(session('error'))
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{session('error')}}
+                                                    </div>
+                                                @endif
+                                                <div class="row">
+                                                    <div class="form-group col-md-12">
+                                                        <label>Mật khẩu cũ <span class="required">*</span></label>
+                                                        <input type="password" name="old_password"
+                                                               class="form-control @error('old_password') is-invalid @enderror"
+                                                               id="current_password"
+                                                               value="" placeholder="Nhập mật khẩu cũ"/>
+                                                        @error('old_password')
+                                                        <span class="text-danger">{{$message}}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>Mật khẩu mới <span class="required">*</span></label>
+                                                        <input type="password" name="new_password"
+                                                               class="form-control @error('new_password') is-invalid @enderror"
+                                                               id="new_password"
+                                                               value="" placeholder="Nhập mật khẩu mới"/>
+                                                        @error('new_password')
+                                                        <span class="text-danger">{{$message}}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>Nhập lại mật khẩu mới <span
+                                                                class="required">*</span></label>
+                                                        <input type="password" name="new_password_confirmation"
+                                                               class="form-control @error('new_password_confirmation') is-invalid @enderror"
+                                                               id="new_password_confirmation"
+                                                               value="" placeholder="Nhập lại mật khẩu mới"/>
+                                                        @error('new_password_confirmation')
+                                                        <span class="text-danger">{{$message}}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button type="submit"
+                                                                class="btn btn-fill-out submit font-weight-bold"
+                                                                name="submit" value="Submit">Đổi mật khẩu
                                                         </button>
                                                     </div>
                                                 </div>

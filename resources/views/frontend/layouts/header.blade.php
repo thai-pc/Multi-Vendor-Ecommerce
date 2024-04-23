@@ -106,14 +106,14 @@
                                     <img class="svgInject" alt="Nest" src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-heart.svg" />
                                     <span class="pro-count blue">6</span>
                                 </a>
-                                <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
+                                <a href="shop-wishlist.html"><span class="lable">Bộ sư tập</span></a>
                             </div>
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="shop-cart.html">
                                     <img alt="Nest" src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-cart.svg" />
                                     <span class="pro-count blue">2</span>
                                 </a>
-                                <a href="shop-cart.html"><span class="lable">Cart</span></a>
+                                <a href="shop-cart.html"><span class="lable">Giỏ hàng</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
                                         <li>
@@ -156,29 +156,36 @@
                                 <a href="page-account.html">
                                     <img class="svgInject" alt="Nest" src="{{asset('frontend')}}/assets/imgs/theme/icons/icon-user.svg" />
                                 </a>
-                                <a href="page-account.html"><span class="lable ml-0">Account</span></a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
-                                    <ul>
-                                        <li>
-                                            <a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>My Account</a>
-                                        </li>
-                                        <li>
-                                            <a href="page-account.html"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
-                                        </li>
-                                        <li>
-                                            <a href="page-account.html"><i class="fi fi-rs-label mr-10"></i>My Voucher</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-wishlist.html"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
-                                        </li>
-                                        <li>
-                                            <a href="page-account.html"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
-                                        </li>
-                                        <li>
-                                            <a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                @auth()
+                                    <a href="{{route('user.profile')}}"><span class="lable ml-0">{{Auth::user()->name}}</span></a>
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
+                                        <ul>
+                                            <li>
+                                                <a href="{{route('user.profile')}}"><i class="fi fi-rs-user mr-10"></i>Trang cá nhân</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('user.profile')}}"><i class="fi fi-rs-location-alt mr-10"></i>Đơn hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('user.profile')}}"><i class="fi fi-rs-label mr-10"></i>My Voucher</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('user.profile')}}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('user.profile')}}"><i class="fi fi-rs-settings-sliders mr-10"></i>Cài đặt</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('user.logout')}}"><i class="fi fi-rs-sign-out mr-10"></i>Đăng xuất</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @else
+                                    <a href="{{route('login')}}"><span class="lable ml-0">Đăng nhập</span></a>
+                                    <span class="lable mx-1">|</span>
+                                    <a href="{{route('register')}}"><span class="lable ml-0">Đăng ký</span></a>
+                                @endauth
+
                             </div>
                         </div>
                     </div>

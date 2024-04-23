@@ -38,7 +38,7 @@
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
-                                <form method="POST" action="{{route('update.password')}}"
+                                <form method="POST" action="{{route('admin.update.password')}}"
                                       enctype="multipart/form-data">
                                     @csrf
 

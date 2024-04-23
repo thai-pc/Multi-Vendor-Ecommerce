@@ -16,6 +16,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/plugins/animate.min.css"/>
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/main.css?v=5.3"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
 
 <body>
@@ -39,15 +40,7 @@
 <!-- End footer  -->
 
 <!-- Preloader Start -->
-<div id="preloader-active">
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="preloader-inner position-relative">
-            <div class="text-center">
-                <img src="{{asset('frontend')}}/assets/imgs/theme/loading.gif" alt=""/>
-            </div>
-        </div>
-    </div>
-</div>
+@yield('preloader')
 <!-- Vendor JS-->
 <script src="{{asset('frontend')}}/assets/js/vendor/modernizr-3.6.0.min.js"></script>
 <script src="{{asset('frontend')}}/assets/js/vendor/jquery-3.6.0.min.js"></script>
@@ -71,6 +64,30 @@
 <!-- Template  JS -->
 <script src="{{asset('frontend')}}/assets/js/main.js?v=5.3"></script>
 <script src="{{asset('frontend')}}/assets/js/shop.js?v=5.3"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type','info') }}"
+    switch (type) {
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+    }
+    @endif
+</script>
 </body>
 
 </html>

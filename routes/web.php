@@ -18,8 +18,10 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 Route::middleware('auth', 'verified')->group(function () {
+    Route::get('user/logout', [UserController::class, 'destroy'])->name('user.logout');
     Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::post('user/profile/store', [UserController::class, 'profileStore'])->name('user.profile.store');
+    Route::post('user/update/password', [UserController::class, 'updatePassword'])->name('user.update.password');
 });
 
 

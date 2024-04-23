@@ -28,17 +28,20 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+        $notification = array(
+            'message' => 'Đăng nhập thành công',
+            'alert-type' => 'success'
+        );
         $url = '';
-        if($request->user()->role == 'admin'){
+        if ($request->user()->role == 'admin') {
             $url = 'admin/dashboard';
-        }else if($request->user()->role == 'vendor'){
+        } else if ($request->user()->role == 'vendor') {
             $url = 'vendor/dashboard';
-        }else{
+        } else {
             $url = '/user/profile';
         }
 
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with($notification);
     }
 
     /**
